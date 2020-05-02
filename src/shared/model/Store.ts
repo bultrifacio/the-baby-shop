@@ -6,7 +6,7 @@ export interface Store {
     storeViews: Array<StoreView>
 }
 
-interface StoreView {
+export interface StoreView {
     storeId: string;
     name: string;
 }
