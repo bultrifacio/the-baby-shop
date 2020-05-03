@@ -1,3 +1,4 @@
 export enum PageEnum {
-        STORE = 'store'
+    STORE = 'store',
+    PRODUCTS = 'products',
 }

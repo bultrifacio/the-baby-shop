@@ -10,7 +10,6 @@ export const StorePage: React.FunctionComponent<RouteComponentProps> = () => {
 
     React.useEffect(() => {
         getStores().then((response: Array<Store>) => {
-            console.log(response);
             setStores(response);
         });
     }, []);

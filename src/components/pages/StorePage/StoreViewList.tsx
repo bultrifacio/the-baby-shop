@@ -14,7 +14,7 @@ export const StoreViewList: React.FunctionComponent<StoreInfoProps> = props => {
             size="small"
             dataSource={props.storeViews}
             renderItem={(storeView: StoreView) =>
-                <List.Item actions={[<GoButton url={"/test"}/>]}>
+                <List.Item actions={[<GoButton storeId={storeView.storeId}/>]}>
                     {storeView.name}
                 </List.Item>}
         />
