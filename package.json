@@ -15,12 +15,12 @@
     "@types/react-dom": "^16.9.0",
     "antd": "^4.2.0",
     "axios": "^0.19.2",
-    "env-cmd": "^10.1.0",
     "lodash": "^4.17.15",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "typescript": "~3.7.2"
+    "typescript": "~3.7.2",
+    "moment": "2.24.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -30,6 +30,9 @@
   },
   "eslintConfig": {
     "extends": "react-app"
+  },
+  "resolutions": {
+    "moment": "2.24.0"
   },
   "browserslist": {
     "production": [
@@ -44,6 +47,7 @@
     ]
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.150",
     "node-sass": "^4.14.0",
     "sass-loader": "^8.0.2"
   }
