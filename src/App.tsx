@@ -1,15 +1,13 @@
 import React from 'react';
-import './App.scss';
 import {StorePage} from "./components/pages/StorePage/StorePage";
 import {Redirect, Router} from "@reach/router";
 import {ProductSearchPage} from "./components/pages/ProductSearchPage/ProductSearchPage";
 import {NotFound} from "./components/pages/NotFound/NotFound";
 import {ProductDetail} from "./components/pages/ProductDetail/ProductDetail";
 import {Header} from "./components/Header/Header";
+import './App.less';
 
 const App: React.FunctionComponent = () => {
-
-
     return (
         <main className="app">
             <Header/>

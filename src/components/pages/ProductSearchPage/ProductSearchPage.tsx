@@ -3,9 +3,9 @@ import {RouteComponentProps} from "@reach/router";
 import {getCategories, getProducts} from "./products.service";
 import {Category} from "../../../shared/model/Category";
 import {CategoriesMenu} from "./CategoriesMenu";
-import './ProductSearchPage.scss';
 import {Product} from "../../../shared/model/Product";
 import {ProductList} from "./ProductList";
+import './ProductSearchPage.less';
 
 interface ProductSearchPageProps extends RouteComponentProps {
     storeViewId?: string;

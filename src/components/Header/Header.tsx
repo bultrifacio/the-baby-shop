@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "@reach/router";
-import './Header.scss';
+import './Header.less';
 
 export const Header: React.FunctionComponent = () => {
 
