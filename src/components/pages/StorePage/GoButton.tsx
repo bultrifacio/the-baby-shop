@@ -14,5 +14,5 @@ export const GoButton: React.FunctionComponent<GoButtonProps> = props => {
 
     const selectStoreView = () => navigate(`${location.pathname}/${props.storeId}/${PathEnum.PRODUCTS}`);
 
-    return <Button type="primary" shape="circle" onClick={selectStoreView} icon={<RightOutlined/>}/>
+    return <Button type="primary" shape="circle" className="go-button" onClick={selectStoreView} icon={<RightOutlined/>}/>
 };

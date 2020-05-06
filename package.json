@@ -16,11 +16,11 @@
     "antd": "^4.2.0",
     "axios": "^0.19.2",
     "lodash": "^4.17.15",
+    "moment": "2.24.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "typescript": "~3.7.2",
-    "moment": "2.24.0"
+    "typescript": "~3.7.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -48,7 +48,7 @@
   },
   "devDependencies": {
     "@types/lodash": "^4.14.150",
-    "node-sass": "^4.14.0",
+    "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2"
   }
 }

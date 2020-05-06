@@ -1,5 +1,25 @@
 .product-search-page {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+
+    .category-menu {
+        height: 100%;
+    }
+
+    .ant-menu-submenu-title:hover {
+        color: #DF744A;
+    }
+
+    .product-list-container {
+        padding: 40px 60px 40px 60px;
+    }
+
+    .rounded-card {
+        border-radius: 24px;
+        max-width: 350px;
+    }
+
+    .product-image {
+        width: 240px;
+    }
 }

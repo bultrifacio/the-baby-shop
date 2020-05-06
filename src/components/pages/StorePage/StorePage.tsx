@@ -16,6 +16,7 @@ export const StorePage: React.FunctionComponent<RouteComponentProps> = () => {
 
     return (
         <div className="store-page">
+            <h1 className="info-message">Welcome to The Baby Shop, please select a store</h1>
             <StoreList stores={stores}/>
         </div>);
 };

@@ -14,13 +14,13 @@ export const ProductList: React.FunctionComponent<ProductListProps> = props => {
 
     return (
         <div className="product-list-container">
-            <List grid={{gutter: 40, column: 4}}
+            <List grid={{gutter: 20, column: 3}}
                   dataSource={props.products}
                   renderItem={(product: Product) =>
                       <List.Item>
                           <Card
                               bordered
-                              cover={<img alt={product.description} src={product.images[0]}/>}
+                              cover={<img alt={product.description} className="product-image" src={"https://cdn.shopify.com/s/files/1/0028/4603/1930/products/Blush_baby_vest_with_silver_bolt_500x500.jpg?v=1539288798"}/>}
                               hoverable
                               onClick={() => navigate(`${location.pathname}/${product.modelId}`)}
                           >

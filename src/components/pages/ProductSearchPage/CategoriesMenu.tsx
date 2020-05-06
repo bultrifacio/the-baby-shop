@@ -11,7 +11,7 @@ interface CategoriesListProps {
 export const CategoriesMenu: React.FunctionComponent<CategoriesListProps> = props => {
 
     return (
-        <Menu mode="inline" onSelect={({key}) => props.onSelectCategory(key)}>
+        <Menu mode="inline" className="category-menu" onSelect={({key}) => props.onSelectCategory(key)}>
             {props.categories.map((category: Category) =>
                 <SubMenu key={category.categoryId} title={<span>{category.name}</span>}>
                     {category.children.map((subCategory: Category) =>
