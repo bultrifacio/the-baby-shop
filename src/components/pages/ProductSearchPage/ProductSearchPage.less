@@ -1,20 +1,23 @@
 .product-search-page {
-    display: grid;
-    grid-template-columns: 250px 1fr;
+	display: grid;
+	grid-template-columns: 250px 1fr;
+	height: 100vh;
 
-    .category-menu {
-        height: 100%;
-    }
+	.product-list-container {
+		padding: 40px 60px 40px 60px;
 
-    .ant-menu-submenu-title:hover {
-        //color: #DF744A;
-    }
+		.product-name {
+			color: #DF744A;
+			font-weight: bold;
+			font-size: 1.1rem;
+		}
+	}
 
-    .product-list-container {
-        padding: 40px 60px 40px 60px;
-    }
+	.list-pagination, .ant-pagination-item-link, .ant-pagination-item > a {
+		color: white;
+	}
 
-    .product-image {
-        width: 240px;
-    }
+	.ant-pagination-item-active > a, .ant-select-arrow, .ant-select-selector {
+		color: #DF744A;
+	}
 }

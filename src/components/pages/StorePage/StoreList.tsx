@@ -16,7 +16,7 @@ export const StoreList: React.FunctionComponent<StoreListProps> = props => {
                   grid={{gutter: 40, column: 4}}
                   renderItem={(store: Store) =>
                       <List.Item>
-                          <Card title={store.name} bordered>
+                          <Card title={store.name}>
                               <StoreViewList storeViews={store.storeViews}/>
                           </Card>
                       </List.Item>}/>
