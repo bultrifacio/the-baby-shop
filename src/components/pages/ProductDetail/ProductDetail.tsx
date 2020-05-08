@@ -2,6 +2,9 @@ import React from "react";
 import {RouteComponentProps} from "@reach/router";
 import {getProduct} from "./product.service";
 import {Product} from "../../../shared/model/Product";
+import './ProductDetail.less';
+import {ProductImages} from "./ProductImages";
+import {Detail} from "./Detail/Detail";
 
 interface ProductDetailProps extends RouteComponentProps {
     storeViewId?: string;
@@ -11,13 +14,17 @@ interface ProductDetailProps extends RouteComponentProps {
 export const ProductDetail: React.FunctionComponent<ProductDetailProps> = props => {
 
     const [product, setProduct] = React.useState<Product>();
-    console.log(props.storeViewId, props.productId)
+
     React.useEffect(() => {
         getProduct(props.storeViewId!, props.productId!).then((product: Product) => {
             setProduct(product);
         });
     }, [props.storeViewId, props.productId]);
 
-    return <div>{product?.description}</div>
-
+    return (
+        <div className="product-detail">
+            <ProductImages images={product?.images}/>
+            <Detail product={product}/>
+        </div>
+    );
 };
