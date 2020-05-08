@@ -20,6 +20,7 @@ export const CategoriesMenu: React.FunctionComponent<CategoriesListProps> = prop
     return (
         <Menu mode="inline"
               openKeys={openedSubMenu}
+              className="categories-menu"
               onOpenChange={onOpenChange}
               onSelect={({key}) => props.onSelectCategory(key)}>
             {props.categories.map((category: Category) =>

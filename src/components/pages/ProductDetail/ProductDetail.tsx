@@ -5,6 +5,7 @@ import {Product} from "../../../shared/model/Product";
 import './ProductDetail.less';
 import {ProductImages} from "./ProductImages";
 import {Detail} from "./Detail/Detail";
+import {BreadcrumbBar} from "../../BreadcrumbBar/BreadcrumbBar";
 
 interface ProductDetailProps extends RouteComponentProps {
     storeViewId?: string;
@@ -23,6 +24,7 @@ export const ProductDetail: React.FunctionComponent<ProductDetailProps> = props 
 
     return (
         <div className="product-detail">
+            <BreadcrumbBar />
             <ProductImages images={product?.images}/>
             <Detail product={product}/>
         </div>

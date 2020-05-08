@@ -1,16 +1,22 @@
 .product-detail {
 
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-flow: wrap;
-	margin-top: 100px;
+	display: grid;
+	grid-template-columns: 2fr 3fr 3fr 2fr;
+	grid-template-rows: 60px 1fr;
+	grid-template-areas:
+		". breadcrumb . ."
+		". image detail .";
 
 	& > div {
 		margin: 30px;
 	}
 
+	.breadcrumb-bar {
+		grid-area: breadcrumb;
+	}
+
 	.carousel-container {
+		grid-area: image;
 		width: 400px;
 		height: 500px;
 
@@ -34,6 +40,7 @@
 	}
 
 	.details-container {
+		grid-area: detail;
 		display: flex;
 		flex-direction: column;
 		padding: 40px;

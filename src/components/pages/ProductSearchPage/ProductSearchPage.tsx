@@ -6,6 +6,7 @@ import {CategoriesMenu} from "./CategoriesMenu";
 import {Product} from "../../../shared/model/Product";
 import {ProductList} from "./ProductList";
 import './ProductSearchPage.less';
+import {BreadcrumbBar} from "../../BreadcrumbBar/BreadcrumbBar";
 
 interface ProductSearchPageProps extends RouteComponentProps {
     storeViewId?: string;
@@ -39,6 +40,7 @@ export const ProductSearchPage: React.FunctionComponent<ProductSearchPageProps> 
 
     return (
         <div className="product-search-page">
+            <BreadcrumbBar/>
             <CategoriesMenu categories={categories} onSelectCategory={onSelectCategory}/>
             <ProductList products={products}/>
         </div>
