@@ -13,7 +13,7 @@ export const FinalPrice: React.FunctionComponent<FinalPriceProps> = props => {
 
     if (isNil(props.originalPrice) || isNil(props.finalPrice)) return null;
 
-    const hasDiscount = props.originalPrice === props.finalPrice;
+    const hasDiscount = props.originalPrice !== props.finalPrice;
 
     const formatPrice = (price: number): string => {
         return `${price / 100} €`;
