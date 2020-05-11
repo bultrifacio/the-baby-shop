@@ -1,4 +1,4 @@
 export enum PathEnum {
-    STORE = '/',
+    STORE = '/stores',
     PRODUCTS = 'products'
 }

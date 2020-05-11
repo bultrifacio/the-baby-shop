@@ -3,10 +3,13 @@ import {Product} from "../../../shared/model/Product";
 import {Card, List} from "antd";
 import {navigate, useLocation} from "@reach/router";
 import {Image} from "../../Image/Image";
-import {FinalPrice} from "../../FinalPrice/FinalPrice";
+import {Price} from "../../FinalPrice/Price";
 
 interface ProductListProps {
-    products: Array<Product>
+    products: Array<Product>;
+    currentProductPage: number;
+    productsPerPage: number;
+    onChangePagination: Function;
 }
 
 export const ProductList: React.FunctionComponent<ProductListProps> = props => {
@@ -22,18 +25,21 @@ export const ProductList: React.FunctionComponent<ProductListProps> = props => {
                       showTotal: (total: number, range: [number, number]) => `${range[0]}-${range[1]} of ${total} items`,
                       defaultCurrent: 1,
                       showSizeChanger: true,
-                      className: 'list-pagination'
+                      current: props.currentProductPage,
+                      pageSize: props.productsPerPage,
+                      className: 'list-pagination',
+                      onChange: (page: number, pageSize?: number) => props.onChangePagination(page, pageSize),
                   }}
                   renderItem={(product: Product) =>
                       <List.Item>
                           <Card
-                              bordered={false}
+                              bordered
                               cover={<Image url={product.images}/>}
                               hoverable
                               onClick={() => navigate(`${location.pathname}/${product.modelId}`)}
                           >
                               <div className="product-name">{product.name}</div>
-                              <FinalPrice originalPrice={product.originalPrice} finalPrice={product.finalPrice} />
+                              <Price originalPrice={product.originalPrice} finalPrice={product.finalPrice}/>
                           </Card>
                       </List.Item>}
             />

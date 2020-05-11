@@ -4,7 +4,7 @@ import {SizeItem} from "./SizeItem";
 import shortid from "shortid";
 
 interface SizesListProps {
-    sizes?: Array<ProductVariant>
+    sizes?: Array<ProductVariant>;
 }
 
 export const SizesList: React.FunctionComponent<SizesListProps> = props => {

@@ -8,7 +8,7 @@ interface GoButtonProps {
     storeId: string;
 }
 
-export const GoButton: React.FunctionComponent<GoButtonProps> = props => {
+export const RightRoundButton: React.FunctionComponent<GoButtonProps> = props => {
 
     const location = useLocation();
 

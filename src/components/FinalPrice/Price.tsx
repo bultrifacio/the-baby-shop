@@ -1,5 +1,5 @@
 import React from "react";
-import './FinalPrice.less';
+import './Price.less';
 import isNil from 'lodash/isNil';
 
 interface FinalPriceProps {
@@ -9,7 +9,7 @@ interface FinalPriceProps {
     finalPriceClassName?: string;
 }
 
-export const FinalPrice: React.FunctionComponent<FinalPriceProps> = props => {
+export const Price: React.FunctionComponent<FinalPriceProps> = props => {
 
     if (isNil(props.originalPrice) || isNil(props.finalPrice)) return null;
 

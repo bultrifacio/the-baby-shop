@@ -2,7 +2,7 @@ import React from "react";
 import {ProductVariant} from "../../../../shared/model/Product";
 
 interface SizesItemProps {
-    size: ProductVariant
+    size: ProductVariant;
 }
 
 export const SizeItem: React.FunctionComponent<SizesItemProps> = props => {

@@ -6,7 +6,6 @@ interface ImageProps {
     className?: string;
     url: Array<string>;
 }
-export const Image: React.FunctionComponent<ImageProps> = props => {
 
-    return <Img className={props.className} src={[...props.url, imagePlaceholder]}/>;
-};
+export const Image: React.FunctionComponent<ImageProps> = props =>
+    <Img className={props.className} src={[...props.url, imagePlaceholder]}/>;
