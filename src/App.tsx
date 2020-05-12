@@ -1,18 +1,18 @@
 import React from 'react';
-import {StorePage} from "./components/pages/StorePage/StorePage";
 import {Redirect, Router} from "@reach/router";
 import {ProductSearchPage} from "./components/pages/ProductSearchPage/ProductSearchPage";
 import {NotFound} from "./components/pages/NotFound/NotFound";
 import {ProductDetail} from "./components/pages/ProductDetail/ProductDetail";
 import {Header} from "./components/Header/Header";
 import './App.less';
+import {StoreSelection} from "./components/pages/StorePage/StoreSelection";
 
 const App: React.FunctionComponent = () => {
     return (
         <main className="app">
             <Header/>
             <Router>
-                <StorePage path={`stores`}/>
+                <StoreSelection path={`stores`}/>
                 <ProductSearchPage path={`stores/:storeViewId/products`}/>
                 <ProductDetail path={`stores/:storeViewId/products/:productId`}/>
                 <NotFound default/>
