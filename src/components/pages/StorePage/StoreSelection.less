@@ -9,21 +9,51 @@
         justify-content: space-around;
         align-items: center;
         flex-direction: column;
-        padding: 100px;
+        padding: 20px;
         background-color: white;
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 
         .welcome-heading > h1 {
-            color: #DF744A;
+            color: @primary-color;
             font-weight: bolder;
         }
 
         .select-store-container {
-            width: 100%;
             display: flex;
+            width: 100%;
             justify-content: space-around;
             align-items: center;
-            padding: 40px 100px 40px 100px;
+            padding: 10px 25px 10px 25px;
         }
     }
 }
+
+@media only screen and (min-width: 576px) {
+    .store-selection-container {
+        margin: 40px 80px 40px 80px;
+        .store-selection {
+            padding: 50px;
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .store-selection-container {
+        .store-selection {
+            padding: 60px;
+        }
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .store-selection-container {
+        .store-selection {
+            padding: 100px;
+            .select-store-container {
+                padding: 40px 100px 40px 100px;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1200px) {}

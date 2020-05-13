@@ -58,7 +58,7 @@ export const StoreSelection: React.FunctionComponent<RouteComponentProps> = () =
                         </Select>
                     </div>
                 </div>
-                <div>
+                <div className="accept-button-container">
                     <Button type="primary" disabled={isNil(selectedStore) || isNil(selectedCountry)}
                             onClick={selectStoreView}>Accept</Button>
                 </div>

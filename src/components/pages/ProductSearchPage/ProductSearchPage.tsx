@@ -46,6 +46,8 @@ export const ProductSearchPage: React.FunctionComponent<ProductSearchPageProps> 
 
     const [filterPayload, setFilterPayload] = React.useState<FilterPayload>({});
 
+    const [visibleMenu, setVisibleMenu] = React.useState<boolean>(false);
+
     React.useEffect(() => {
         const storeViewId = props.storeViewId;
 
@@ -144,6 +146,7 @@ export const ProductSearchPage: React.FunctionComponent<ProductSearchPageProps> 
     const onChangeDirection = (value: DirectionEnum): void => setSelectedDirection(value);
     const onChangeOrder = (value: OrderEnum): void => setSelectedOrder(value);
     const onChangeWithText = (value: string): void => setWithText(value);
+    const onClickDrawerMenu = (value: boolean): void => setVisibleMenu(value);
 
     const onClickClearFilters = (): void => {
         setSelectedSize([]);
@@ -161,10 +164,13 @@ export const ProductSearchPage: React.FunctionComponent<ProductSearchPageProps> 
                            selectedOrder={selectedOrder}
                            onChangeOrder={onChangeOrder}
                            withText={withText}
-                           onChangeWithText={onChangeWithText}/>
+                           onChangeWithText={onChangeWithText}
+                           onClickDrawerMenu={onClickDrawerMenu}/>
 
             <CategoriesMenu categories={categories}
-                            onSelectCategory={(subCategoryId: string) => setSelectedCategory([subCategoryId])}>
+                            onSelectCategory={(subCategoryId: string) => setSelectedCategory([subCategoryId])}
+                            visibleMenu={visibleMenu}
+                            onClickDrawerMenu={onClickDrawerMenu}>
                 <SearchFilter sizes={sizesList}
                               colors={colorList}
                               composition={compositionList}
