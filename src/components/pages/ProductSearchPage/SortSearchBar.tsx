@@ -17,25 +17,27 @@ interface SortSearchBarProps {
 
 export const SortSearchBar: React.FunctionComponent<SortSearchBarProps> = props => {
 
+    const {selectedDirection, onChangeDirection, selectedOrder, onChangeOrder, withText, onChangeWithText, onClickDrawerMenu} = props;
+
     const {Option} = Select;
 
     return (
         <div className="sort-search-bar">
             <div className="sort-search-bar-filter-container">
                 <div className="sort-search-bar-item drawer-menu-button">
-                    <Button type="primary" onClick={() => props.onClickDrawerMenu(true)}>Filters</Button>
+                    <Button type="primary" onClick={() => onClickDrawerMenu(true)}>Filters</Button>
                 </div>
                 <div className="sort-search-bar-item">
-                    <Select value={props.selectedDirection}
-                            onChange={(value: DirectionEnum) => props.onChangeDirection(value)}
+                    <Select value={selectedDirection}
+                            onChange={(value: DirectionEnum) => onChangeDirection(value)}
                             placeholder="Sort order">
                         <Option value={DirectionEnum.ASC}>{capitalize(DirectionEnum.ASC)}</Option>
                         <Option value={DirectionEnum.DESC}>{capitalize(DirectionEnum.DESC)}</Option>
                     </Select>
                 </div>
                 <div className="sort-search-bar-item">
-                    <Select value={props.selectedOrder}
-                            onChange={(value: OrderEnum) => props.onChangeOrder(value)}
+                    <Select value={selectedOrder}
+                            onChange={(value: OrderEnum) => onChangeOrder(value)}
                             placeholder="Select order">
                         <Option value={OrderEnum.NAME}>{capitalize(OrderEnum.NAME)}</Option>
                         <Option value={OrderEnum.PRICE}>{capitalize(OrderEnum.PRICE)}</Option>
@@ -45,8 +47,8 @@ export const SortSearchBar: React.FunctionComponent<SortSearchBarProps> = props 
             </div>
             <div className="sort-search-bar-item">
                 <Search placeholder="Search"
-                        defaultValue={props.withText}
-                        onSearch={(value: string) => props.onChangeWithText(value)}
+                        defaultValue={withText}
+                        onSearch={(value: string) => onChangeWithText(value)}
                         enterButton
                         allowClear/>
             </div>

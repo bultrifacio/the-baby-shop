@@ -15,6 +15,8 @@ export const CategoriesMenu: React.FunctionComponent<CategoriesListProps> = prop
 
     const [openedSubMenu, setOpenedSubMenu] = React.useState<Array<string>>([]);
 
+    const {categories, onSelectCategory, visibleMenu, onClickDrawerMenu, children} = props;
+
     const onOpenChange = (openKeys: Array<string>): void => {
         setOpenedSubMenu(difference(openKeys, openedSubMenu));
     };
@@ -26,37 +28,37 @@ export const CategoriesMenu: React.FunctionComponent<CategoriesListProps> = prop
                       openKeys={openedSubMenu}
                       onOpenChange={onOpenChange}
                       className="inline-menu"
-                      onSelect={({key}) => props.onSelectCategory(key)}>
-                    {props.categories?.map((category: Category) =>
+                      onSelect={({key}) => onSelectCategory(key)}>
+                    {categories?.map((category: Category) =>
                         <SubMenu key={category.categoryId} title={<span>{category.name}</span>}>
                             {category.children.map((subCategory: Category) =>
                                 <Menu.Item key={subCategory.categoryId}>{subCategory.name}</Menu.Item>)}
                         </SubMenu>
                     )}
                 </Menu>
-                {props.children}
+                {children}
             </div>
             <div className="collapsable-menu-container">
                 <Drawer
                     title="Categories"
                     placement="left"
                     closable
-                    onClose={() => props.onClickDrawerMenu(false)}
-                    visible={props.visibleMenu}
+                    onClose={() => onClickDrawerMenu(false)}
+                    visible={visibleMenu}
                 >
                     <Menu mode="inline"
                           openKeys={openedSubMenu}
                           onOpenChange={onOpenChange}
                           className="collapsable-menu"
-                          onSelect={({key}) => props.onSelectCategory(key)}>
-                        {props.categories?.map((category: Category) =>
+                          onSelect={({key}) => onSelectCategory(key)}>
+                        {categories?.map((category: Category) =>
                             <SubMenu key={category.categoryId} title={<span>{category.name}</span>}>
                                 {category.children.map((subCategory: Category) =>
                                     <Menu.Item key={subCategory.categoryId}>{subCategory.name}</Menu.Item>)}
                             </SubMenu>
                         )}
                     </Menu>
-                    {props.children}
+                    {children}
                 </Drawer>
             </div>
         </div>

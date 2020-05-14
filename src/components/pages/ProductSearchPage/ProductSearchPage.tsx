@@ -20,6 +20,7 @@ import {OrderEnum} from "../../../shared/enum/OrderEnum";
 import {SortSearchBar} from "./SortSearchBar";
 import {useQuery} from "react-query";
 import {message} from "antd";
+import {PageEnum} from "../../../shared/enum/PageEnum";
 
 interface ProductSearchPageProps extends RouteComponentProps {
     storeViewId?: string;
@@ -167,7 +168,7 @@ export const ProductSearchPage: React.FunctionComponent<ProductSearchPageProps> 
 
         return (
             <div className="product-search-page">
-                <BreadcrumbBar/>
+                <BreadcrumbBar page={PageEnum.PRODUCTS}/>
                 <SortSearchBar selectedDirection={selectedDirection}
                                onChangeDirection={onChangeDirection}
                                selectedOrder={selectedOrder}

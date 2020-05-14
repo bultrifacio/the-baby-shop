@@ -7,6 +7,7 @@ import {Detail} from "./Detail/Detail";
 import {BreadcrumbBar} from "../../BreadcrumbBar/BreadcrumbBar";
 import {useQuery} from "react-query";
 import {message} from "antd";
+import {PageEnum} from "../../../shared/enum/PageEnum";
 
 interface ProductDetailProps extends RouteComponentProps {
     storeViewId?: string;
@@ -38,7 +39,7 @@ export const ProductDetail: React.FunctionComponent<ProductDetailProps> = props 
 
     return (
         <div className="product-detail">
-            <BreadcrumbBar/>
+            <BreadcrumbBar page={PageEnum.PRODUCT_DETAIL}/>
             <ProductImages images={product?.images}/>
             <Detail product={product}/>
         </div>

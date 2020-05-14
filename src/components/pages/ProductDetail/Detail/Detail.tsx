@@ -12,28 +12,32 @@ interface DetailProps {
 
 export const Detail: React.FunctionComponent<DetailProps> = props => {
 
-    if (isNil(props.product)) return null;
+    const {product} = props;
+
+    if (isNil(product)) return null;
+
+    const {name, originalPrice, finalPrice, description, color, composition, sizes, care} = product;
 
     return (
         <div className="details-container">
             <div className="product-name">
-                <h1>{props.product?.name}</h1>
+                <h1>{name}</h1>
             </div>
             <div className="product-price">
-                <Price originalPrice={props.product?.originalPrice} finalPrice={props.product?.finalPrice} />
+                <Price originalPrice={originalPrice} finalPrice={finalPrice}/>
             </div>
             <Divider/>
             <div className="detail-item">
-                <span>{props.product?.description}</span>
+                <span>{description}</span>
             </div>
             <div className="detail-item">
-                <span>Color: </span><span>{props.product?.color}</span>
+                <span>Color: </span><span>{color}</span>
             </div>
             <div className="detail-item">
-                <span>Composition: </span><span>{props.product?.composition}</span>
+                <span>Composition: </span><span>{composition}</span>
             </div>
-            <SizesList sizes={props.product?.sizes}/>
-            <Img className="care-image" src={props.product?.care} />
+            <SizesList sizes={sizes}/>
+            <Img className="care-image" src={care}/>
         </div>
     );
 };

@@ -14,21 +14,23 @@ interface ProductListProps {
 
 export const ProductList: React.FunctionComponent<ProductListProps> = props => {
 
+    const {products, currentProductPage, productsPerPage, onChangePagination} = props;
+
     const location = useLocation();
 
     return (
         <div className="product-list-container">
             <List grid={{gutter: 20, column: 2, xs: 1, sm: 2, md: 2, lg: 2, xl: 2}}
-                  dataSource={props.products}
+                  dataSource={products}
                   pagination={{
                       size: "small",
                       showTotal: (total: number, range: [number, number]) => `${range[0]}-${range[1]} of ${total} items`,
                       defaultCurrent: 1,
                       showSizeChanger: true,
-                      current: props.currentProductPage,
-                      pageSize: props.productsPerPage,
+                      current: currentProductPage,
+                      pageSize: productsPerPage,
                       className: 'list-pagination',
-                      onChange: (page: number, pageSize?: number) => props.onChangePagination(page, pageSize),
+                      onChange: (page: number, pageSize?: number) => onChangePagination(page, pageSize),
                   }}
                   renderItem={(product: Product) =>
                       <List.Item>

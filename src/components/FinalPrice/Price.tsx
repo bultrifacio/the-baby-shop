@@ -10,22 +10,24 @@ interface FinalPriceProps {
 }
 
 export const Price: React.FunctionComponent<FinalPriceProps> = props => {
+    
+    const {originalPrice, finalPrice, originalPriceClassName, finalPriceClassName} = props;
 
-    if (isNil(props.originalPrice) || isNil(props.finalPrice)) return null;
+    if (isNil(originalPrice) || isNil(finalPrice)) return null;
 
-    const hasDiscount = props.originalPrice !== props.finalPrice;
+    const hasDiscount = originalPrice !== finalPrice;
 
     const formatPrice = (price: number): string => {
         return `${price / 100} €`;
     };
 
-    const originalPriceClassName = props.originalPriceClassName ? props.originalPriceClassName : 'original-price';
-    const finalPriceClassName = props.finalPriceClassName ? props.originalPriceClassName : 'final-price';
+    const originalPriceClass = originalPriceClassName ? originalPriceClassName : 'original-price';
+    const finalPriceClass = finalPriceClassName ? originalPriceClassName : 'final-price';
 
     return (
         <div className="final-price-container">
-            {hasDiscount ? <span className={originalPriceClassName}>{formatPrice(props.originalPrice)}</span> : null}
-            <span className={finalPriceClassName}>{formatPrice(props.finalPrice)}</span>
+            {hasDiscount ? <span className={originalPriceClass}>{formatPrice(originalPrice)}</span> : null}
+            <span className={finalPriceClass}>{formatPrice(finalPrice)}</span>
         </div>
     );
 };

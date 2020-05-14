@@ -5,6 +5,7 @@ import shortid from "shortid";
 import {ProductVariant} from "../../../shared/model/Product";
 import {SliderValue} from "antd/es/slider";
 import {CloseOutlined} from "@ant-design/icons/lib";
+import CONSTANTS from "../../../shared/constants";
 
 interface SearchFilterProps {
     categories: Array<CascaderOptionType>;
@@ -26,9 +27,11 @@ interface SearchFilterProps {
 
 export const SearchFilter: React.FunctionComponent<SearchFilterProps> = props => {
 
-    const {Option} = Select;
+    const {categories, colors, composition, sizes} = props;
+    const {selectedSize, selectedColor, selectedComposition, selectedPrice, selectedCategory} = props;
+    const {onChangeComposition, onChangeColor, onChangeSize, onChangeCategory, onChangePrice, onClickClearFilters} = props;
 
-    const SLIDER_STEP = 10;
+    const {Option} = Select;
 
     return (
         <div className="search-filter">
@@ -36,28 +39,28 @@ export const SearchFilter: React.FunctionComponent<SearchFilterProps> = props =>
                 <Divider/>
             </div>
             <div>
-                <Cascader options={props.categories}
+                <Cascader options={categories}
                           className="select-filter-item"
                           placeholder="Select a category"
-                          value={props.selectedCategory}
+                          value={selectedCategory}
                           allowClear
                           showSearch
-                          onChange={(value: Array<string>) => props.onChangeCategory(value)}/>
+                          onChange={(value: Array<string>) => onChangeCategory(value)}/>
             </div>
             <div>
                 <div>Select a range of price</div>
-                <Slider step={SLIDER_STEP} range value={props.selectedPrice}
-                        onChange={(value: SliderValue) => props.onChangePrice(value)}/>
+                <Slider step={CONSTANTS.SLIDE_STEP} range value={selectedPrice}
+                        onChange={(value: SliderValue) => onChangePrice(value)}/>
             </div>
             <div>
                 <Select
                     mode="multiple"
                     className="select-filter-item"
                     placeholder="Select composition"
-                    value={props.selectedComposition}
-                    onChange={(option: Array<string>) => props.onChangeComposition(option)}
+                    value={selectedComposition}
+                    onChange={(option: Array<string>) => onChangeComposition(option)}
                 >
-                    {props.composition.map((composition: string) =>
+                    {composition.map((composition: string) =>
                         <Option key={shortid.generate()} value={composition}>{composition}</Option>
                     )}
                 </Select>
@@ -67,10 +70,10 @@ export const SearchFilter: React.FunctionComponent<SearchFilterProps> = props =>
                     mode="multiple"
                     className="select-filter-item"
                     placeholder="Select colors"
-                    value={props.selectedColor}
-                    onChange={(option: Array<string>) => props.onChangeColor(option)}
+                    value={selectedColor}
+                    onChange={(option: Array<string>) => onChangeColor(option)}
                 >
-                    {props.colors.map((color: string) => <Option key={shortid.generate()}
+                    {colors.map((color: string) => <Option key={shortid.generate()}
                                                                  value={color}>{color}</Option>)}
                 </Select>
             </div>
@@ -79,15 +82,15 @@ export const SearchFilter: React.FunctionComponent<SearchFilterProps> = props =>
                     mode="multiple"
                     className="select-filter-item"
                     placeholder="Select sizes"
-                    value={props.selectedSize}
-                    onChange={(value: Array<string>) => props.onChangeSize(value)}
+                    value={selectedSize}
+                    onChange={(value: Array<string>) => onChangeSize(value)}
                 >
-                    {props.sizes.map((size: ProductVariant) => <Option key={shortid.generate()}
+                    {sizes.map((size: ProductVariant) => <Option key={shortid.generate()}
                                                                        value={size.variantId}>{size.name}</Option>)}
                 </Select>
             </div>
             <div className="filter-buttons-container">
-                <Button onClick={props.onClickClearFilters} icon={<CloseOutlined/>}>Clear filters</Button>
+                <Button onClick={onClickClearFilters} icon={<CloseOutlined/>}>Clear filters</Button>
             </div>
         </div>
     );

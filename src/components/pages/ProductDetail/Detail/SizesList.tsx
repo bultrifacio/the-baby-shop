@@ -10,11 +10,13 @@ interface SizesListProps {
 
 export const SizesList: React.FunctionComponent<SizesListProps> = props => {
 
-    if (isNil(props.sizes)) return null;
+    const {sizes} = props;
+
+    if (isNil(sizes)) return null;
 
     return (
         <div className="size-item-list-container">
-            {props.sizes.map((size: ProductVariant) => <SizeItem key={shortid.generate()} size={size}/>)}
+            {sizes.map((size: ProductVariant) => <SizeItem key={shortid.generate()} size={size}/>)}
         </div>
     );
 };

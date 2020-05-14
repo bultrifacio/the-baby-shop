@@ -7,11 +7,14 @@ interface SizesItemProps {
 
 export const SizeItem: React.FunctionComponent<SizesItemProps> = props => {
 
-    const isOutOfStock = props.size.stockQty < 1 ? 'size-item-fade' : '';
+    const {size} = props;
+    const {stockQty, name} = size;
+
+    const isOutOfStock = stockQty < 1 ? 'size-item-fade' : '';
 
     return (
         <div className="size-item-container">
-            <span className={`size-item ${isOutOfStock}`}>{props.size.name}</span>
+            <span className={`size-item ${isOutOfStock}`}>{name}</span>
         </div>
     );
 };

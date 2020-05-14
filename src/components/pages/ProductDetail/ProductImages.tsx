@@ -10,12 +10,14 @@ interface ProductImagesProps {
 
 export const ProductImages: React.FunctionComponent<ProductImagesProps> = props => {
 
-    if (isNil(props.images)) return null;
+    const {images} = props;
+
+    if (isNil(images)) return null;
 
     return (
         <div className="carousel-container">
             <Carousel>
-                {props.images?.map((url: string) => <Image key={shortid.generate()} className="img" url={[url]}/>)}
+                {images.map((url: string) => <Image key={shortid.generate()} className="img" url={[url]}/>)}
             </Carousel>
         </div>
     );
