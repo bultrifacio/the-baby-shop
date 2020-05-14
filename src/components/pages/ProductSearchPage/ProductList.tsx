@@ -6,7 +6,7 @@ import {Image} from "../../Image/Image";
 import {Price} from "../../FinalPrice/Price";
 
 interface ProductListProps {
-    products: Array<Product>;
+    products: Array<Product> | undefined;
     currentProductPage: number;
     productsPerPage: number;
     onChangePagination: Function;

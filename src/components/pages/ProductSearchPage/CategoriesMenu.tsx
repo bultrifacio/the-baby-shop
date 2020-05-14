@@ -5,7 +5,7 @@ import SubMenu from "antd/es/menu/SubMenu";
 import difference from 'lodash/difference';
 
 interface CategoriesListProps {
-    categories: Array<Category>;
+    categories: Array<Category> | undefined;
     onSelectCategory: Function;
     visibleMenu: boolean;
     onClickDrawerMenu: Function;
@@ -27,7 +27,7 @@ export const CategoriesMenu: React.FunctionComponent<CategoriesListProps> = prop
                       onOpenChange={onOpenChange}
                       className="inline-menu"
                       onSelect={({key}) => props.onSelectCategory(key)}>
-                    {props.categories.map((category: Category) =>
+                    {props.categories?.map((category: Category) =>
                         <SubMenu key={category.categoryId} title={<span>{category.name}</span>}>
                             {category.children.map((subCategory: Category) =>
                                 <Menu.Item key={subCategory.categoryId}>{subCategory.name}</Menu.Item>)}
@@ -49,7 +49,7 @@ export const CategoriesMenu: React.FunctionComponent<CategoriesListProps> = prop
                           onOpenChange={onOpenChange}
                           className="collapsable-menu"
                           onSelect={({key}) => props.onSelectCategory(key)}>
-                        {props.categories.map((category: Category) =>
+                        {props.categories?.map((category: Category) =>
                             <SubMenu key={category.categoryId} title={<span>{category.name}</span>}>
                                 {category.children.map((subCategory: Category) =>
                                     <Menu.Item key={subCategory.categoryId}>{subCategory.name}</Menu.Item>)}

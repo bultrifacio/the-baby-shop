@@ -7,11 +7,16 @@ import {ProductSearch} from "../../../shared/model/ProductSearch";
 const API_URL = process.env.REACT_APP_PUBLIC_API_URL;
 
 export const getCategories = (storeViewId: string): Promise<Array<Category>> => {
+
+    if (storeViewId.length === 0) return Promise.reject();
+
     return axios.get(`${API_URL!}/stores/${storeViewId}/categories`)
         .then((response: AxiosResponse) => response.data);
 };
 
 export const getProducts = (storeViewId: string, filtersPayload?: FilterPayload): Promise<ProductSearch> => {
+
+    if (storeViewId.length === 0) return Promise.reject();
 
     const filters = `filters=${get(filtersPayload, 'filters', '')}`;
     const withText = `with_text=${get(filtersPayload, 'withText', '')}`;

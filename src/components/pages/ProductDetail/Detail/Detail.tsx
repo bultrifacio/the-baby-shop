@@ -4,12 +4,16 @@ import {SizesList} from "./SizesList";
 import {Divider} from "antd";
 import Img from "react-image";
 import {Price} from "../../../FinalPrice/Price";
+import isNil from 'lodash/isNil';
 
 interface DetailProps {
     product?: Product;
 }
 
 export const Detail: React.FunctionComponent<DetailProps> = props => {
+
+    if (isNil(props.product)) return null;
+
     return (
         <div className="details-container">
             <div className="product-name">

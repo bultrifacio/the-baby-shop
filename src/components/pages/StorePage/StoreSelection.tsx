@@ -1,27 +1,27 @@
 import React from "react";
-import {Button, Select} from "antd";
+import {navigate, RouteComponentProps, useLocation} from "@reach/router";
+import {Button, message, Select} from "antd";
 import shortid from "shortid";
 import {Store, StoreView} from "../../../shared/model/Store";
 import isNil from 'lodash/isNil';
 import find from 'lodash/find';
-import {navigate, RouteComponentProps, useLocation} from "@reach/router";
 import {PathEnum} from "../../../shared/enum/PathEnum";
 import {getStores} from "./store.service";
+import {useQuery} from "react-query";
 import './StoreSelection.less';
 
 export const StoreSelection: React.FunctionComponent<RouteComponentProps> = () => {
 
-    const [stores, setStores] = React.useState<Array<Store>>([]);
     const [selectedCountry, setSelectedCountry] = React.useState<string>();
     const [selectedCountryStores, setSelectedCountryStores] = React.useState<Array<StoreView>>();
     const [selectedStore, setSelectedStore] = React.useState<number>();
     const location = useLocation();
 
+    const {data: stores, failureCount} = useQuery('stores', getStores);
+
     React.useEffect(() => {
-        getStores().then((response: Array<Store>) => {
-            setStores(response);
-        });
-    }, []);
+        if (failureCount === 1) message.error("Can't get the stores. Please, try it again in a few minutes.");
+    }, [failureCount])
 
     React.useEffect(() => {
         const country = find(stores, {name: selectedCountry});
@@ -42,8 +42,8 @@ export const StoreSelection: React.FunctionComponent<RouteComponentProps> = () =
                     <div className="select-store-item">
                         <Select placeholder="Select a country" value={selectedCountry}
                                 onChange={(option: string) => setSelectedCountry(option)}>
-                            {stores.map((store: Store) => <Option key={shortid.generate()}
-                                                                  value={store.name}>{store.name}</Option>)}
+                            {stores?.map((store: Store) => <Option key={shortid.generate()}
+                                                                   value={store.name}>{store.name}</Option>)}
                         </Select>
                     </div>
                     <div className="select-store-item">

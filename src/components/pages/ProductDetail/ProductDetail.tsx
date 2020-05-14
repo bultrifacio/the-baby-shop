@@ -1,11 +1,12 @@
 import React from "react";
 import {RouteComponentProps} from "@reach/router";
 import {getProduct} from "./product.service";
-import {Product} from "../../../shared/model/Product";
 import './ProductDetail.less';
 import {ProductImages} from "./ProductImages";
 import {Detail} from "./Detail/Detail";
 import {BreadcrumbBar} from "../../BreadcrumbBar/BreadcrumbBar";
+import {useQuery} from "react-query";
+import {message} from "antd";
 
 interface ProductDetailProps extends RouteComponentProps {
     storeViewId?: string;
@@ -14,17 +15,30 @@ interface ProductDetailProps extends RouteComponentProps {
 
 export const ProductDetail: React.FunctionComponent<ProductDetailProps> = props => {
 
-    const [product, setProduct] = React.useState<Product>();
+    const [storeViewId, setStoreViewId] = React.useState<string>('');
+    const [productId, setProductId] = React.useState<string>('');
 
     React.useEffect(() => {
-        getProduct(props.storeViewId!, props.productId!).then((product: Product) => {
-            setProduct(product);
-        });
-    }, [props.storeViewId, props.productId]);
+        if (props.storeViewId) setStoreViewId(props.storeViewId);
+    }, [props.storeViewId]);
+
+    React.useEffect(() => {
+        if (props.productId) setProductId(props.productId);
+    }, [props.productId]);
+
+    const {data: product, failureCount} = useQuery({
+        queryKey: ['product', {storeViewId, productId}],
+        queryFn: () => getProduct(storeViewId, productId)
+    });
+
+    React.useEffect(() => {
+        if (failureCount === 1) message.error("Can't get the product. Please, try it again in a few minutes.");
+    }, [failureCount]);
+
 
     return (
         <div className="product-detail">
-            <BreadcrumbBar />
+            <BreadcrumbBar/>
             <ProductImages images={product?.images}/>
             <Detail product={product}/>
         </div>
