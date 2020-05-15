@@ -21,6 +21,7 @@ import {FilterBar} from "./FilterBar";
 import {usePaginatedQuery, useQuery} from "react-query";
 import {message} from "antd";
 import {PageEnum} from "../../../shared/enum/PageEnum";
+import {FilterEnum} from "../../../shared/enum/FilterEnum";
 
 interface ProductSearchPageProps extends RouteComponentProps {
     storeViewId?: string;
@@ -28,13 +29,12 @@ interface ProductSearchPageProps extends RouteComponentProps {
 
 export const Products: React.FunctionComponent<ProductSearchPageProps> = props => {
 
-    console.log(props);
-
         const [storeViewId, setStoreViewId] = React.useState<string>('');
 
         const [sizesList, setSizesList] = React.useState<Array<ProductVariant>>([]);
         const [compositionList, setCompositionList] = React.useState<Array<string>>([]);
         const [colorList, setColorList] = React.useState<Array<string>>([]);
+        const [formattedCategories, setFormattedCategories] = React.useState<Array<CascaderOptionType>>([]);
 
         const [currentProductPage, setCurrentProductPage] = React.useState<number>(1);
         const [productsPerPage, setProductsPerPage] = React.useState<number>(10);
@@ -46,8 +46,6 @@ export const Products: React.FunctionComponent<ProductSearchPageProps> = props =
         const [selectedCategory, setSelectedCategory] = React.useState<Array<string>>([]);
         const [selectedDirection, setSelectedDirection] = React.useState<DirectionEnum>(DirectionEnum.ASC);
         const [selectedOrder, setSelectedOrder] = React.useState<OrderEnum>(OrderEnum.NAME);
-
-        const [formattedCategories, setFormattedCategories] = React.useState<Array<CascaderOptionType>>([]);
 
         const [filterPayload, setFilterPayload] = React.useState<FilterPayload>({});
 
@@ -107,14 +105,14 @@ export const Products: React.FunctionComponent<ProductSearchPageProps> = props =
         React.useEffect(() => {
 
             let filtersList = [];
-            const minPrice = `[price][min]=${String(selectedPrice).split(',')[0]}`;
-            const maxPrice = `[price][max]=${String(selectedPrice).split(',')[1]}`;
+            const minPrice = `${FilterEnum.MIN_PRICE}=${String(selectedPrice).split(',')[0]}`;
+            const maxPrice = `${FilterEnum.MAX_PRICE}=${String(selectedPrice).split(',')[1]}`;
             filtersList.push(minPrice);
             filtersList.push(maxPrice);
 
-            selectedColor.map((color: string) => filtersList.push(`[gocco_color_basico][]=${color}`));
-            selectedComposition.map((composition: string) => filtersList.push(`[composition][]=${composition}`));
-            selectedSize.map((size: string) => filtersList.push(`[gocco_talla][]=${size}`));
+            selectedColor.map((color: string) => filtersList.push(`${FilterEnum.COLOR}=${color}`));
+            selectedComposition.map((composition: string) => filtersList.push(`${FilterEnum.COMPOSITION}=${composition}`));
+            selectedSize.map((size: string) => filtersList.push(`${FilterEnum.SIZE}=${size}`));
 
             setFilterPayload({
                 page: currentProductPage,
