@@ -16,7 +16,6 @@ export const ProductList: React.FunctionComponent<ProductListProps> = props => {
 
     const {products, currentProductPage, productsPerPage, onChangePagination} = props;
 
-    const location = useLocation();
 
     return (
         <div className="product-list-container">
@@ -34,17 +33,27 @@ export const ProductList: React.FunctionComponent<ProductListProps> = props => {
                   }}
                   renderItem={(product: Product) =>
                       <List.Item>
-                          <Card
-                              bordered
-                              cover={<Image url={product.images}/>}
-                              hoverable
-                              onClick={() => navigate(`${location.pathname}/${product.modelId}`)}
-                          >
-                              <div className="product-name">{product.name}</div>
-                              <Price originalPrice={product.originalPrice} finalPrice={product.finalPrice}/>
-                          </Card>
+                          <ProductCard product={product} />
                       </List.Item>}
             />
         </div>
+    );
+};
+
+const ProductCard: React.FunctionComponent<{ product: Product }> = props => {
+    const {product} = props;
+    const {images, modelId, name, originalPrice, finalPrice} = product;
+    const {pathname} = useLocation();
+
+    return (
+        <Card
+            bordered
+            cover={<Image url={images}/>}
+            hoverable
+            onClick={() => navigate(`${pathname}/${modelId}`)}
+        >
+            <div className="product-name">{name}</div>
+            <Price originalPrice={originalPrice} finalPrice={finalPrice}/>
+        </Card>
     );
 };
