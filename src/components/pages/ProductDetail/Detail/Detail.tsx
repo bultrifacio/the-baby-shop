@@ -18,24 +18,24 @@ export const Detail: React.FunctionComponent<DetailProps> = props => {
 
     const {name, originalPrice, finalPrice, description, color, composition, sizes, care} = product;
 
+    const Name: React.FunctionComponent = () => <div className="product-name"><h1>{name}</h1></div>;
+
+    const FinalPrice: React.FunctionComponent = () => <div className="product-price"><Price originalPrice={originalPrice} finalPrice={finalPrice}/></div>
+
+    const Description: React.FunctionComponent = () => <div className="detail-item"><span>{description}</span></div>
+
+    const Color: React.FunctionComponent = () => <div className="detail-item"><span>Color: </span><span>{color}</span></div>
+
+    const Composition: React.FunctionComponent = () => <div className="detail-item"><span>Composition: </span><span>{composition}</span></div>
+
     return (
         <div className="details-container">
-            <div className="product-name">
-                <h1>{name}</h1>
-            </div>
-            <div className="product-price">
-                <Price originalPrice={originalPrice} finalPrice={finalPrice}/>
-            </div>
+            <Name/>
+            <FinalPrice/>
             <Divider/>
-            <div className="detail-item">
-                <span>{description}</span>
-            </div>
-            <div className="detail-item">
-                <span>Color: </span><span>{color}</span>
-            </div>
-            <div className="detail-item">
-                <span>Composition: </span><span>{composition}</span>
-            </div>
+            <Description/>
+            <Color/>
+            <Composition/>
             <SizesList sizes={sizes}/>
             <Img className="care-image" src={care}/>
         </div>
