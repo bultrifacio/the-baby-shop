@@ -1,6 +1,6 @@
 import React from "react";
 import {Product} from "../../../shared/model/Product";
-import {SizeList} from "./SizeList";
+import {SizesList} from "./SizesList";
 import {Divider} from "antd";
 import Img from "react-image";
 import {Price} from "../../FinalPrice/Price";
@@ -36,7 +36,7 @@ export const Detail: React.FunctionComponent<DetailProps> = props => {
             <Description/>
             <Color/>
             <Composition/>
-            <SizeList sizes={sizes}/>
+            <SizesList sizes={sizes}/>
             <Img className="care-image" src={care}/>
         </div>
     );

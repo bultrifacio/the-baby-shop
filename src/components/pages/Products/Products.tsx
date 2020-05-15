@@ -28,6 +28,8 @@ interface ProductSearchPageProps extends RouteComponentProps {
 
 export const Products: React.FunctionComponent<ProductSearchPageProps> = props => {
 
+    console.log(props);
+
         const [storeViewId, setStoreViewId] = React.useState<string>('');
 
         const [sizesList, setSizesList] = React.useState<Array<ProductVariant>>([]);

@@ -8,7 +8,7 @@ interface SizesListProps {
     sizes?: Array<ProductVariant>;
 }
 
-export const SizeList: React.FunctionComponent<SizesListProps> = props => {
+export const SizesList: React.FunctionComponent<SizesListProps> = props => {
 
     const {sizes} = props;
 

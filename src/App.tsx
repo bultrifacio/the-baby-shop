@@ -6,15 +6,16 @@ import {ProductDetail} from "./components/pages/ProductDetail/ProductDetail";
 import {Header} from "./components/Header/Header";
 import './App.less';
 import {StoreSelection} from "./components/pages/StoreSelection/StoreSelection";
+import {PathEnum} from "./shared/enum/PathEnum";
 
 const App: React.FunctionComponent = () => {
     return (
         <main className="app">
             <Header/>
             <Router>
-                <StoreSelection path={`stores`}/>
-                <Products path={`stores/:storeViewId/products`}/>
-                <ProductDetail path={`stores/:storeViewId/products/:productId`}/>
+                <StoreSelection path={PathEnum.STORE}/>
+                <Products path={`${PathEnum.STORE}/:storeViewId/${PathEnum.PRODUCTS}`}/>
+                <ProductDetail path={`${PathEnum.STORE}/:storeViewId/${PathEnum.PRODUCTS}/:productId`}/>
                 <NotFound default/>
                 <Redirect from={'/'} to={`stores`} noThrow/>
             </Router>
