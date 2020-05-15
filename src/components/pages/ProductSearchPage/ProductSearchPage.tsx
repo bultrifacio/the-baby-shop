@@ -2,7 +2,7 @@ import React from "react";
 import {RouteComponentProps} from "@reach/router";
 import {getCategories, getProducts} from "./products.service";
 import {Category} from "../../../shared/model/Category";
-import {CategoriesMenu} from "./CategoriesMenu";
+import {FilterMenu} from "./FilterMenu";
 import {Product, ProductVariant} from "../../../shared/model/Product";
 import {ProductList} from "./ProductList";
 import './ProductSearchPage.less';
@@ -177,10 +177,10 @@ export const ProductSearchPage: React.FunctionComponent<ProductSearchPageProps> 
                                onChangeWithText={onChangeWithText}
                                onClickDrawerMenu={onClickDrawerMenu}/>
 
-                <CategoriesMenu categories={categories}
-                                onSelectCategory={(subCategoryId: string) => setSelectedCategory([subCategoryId])}
-                                visibleMenu={visibleMenu}
-                                onClickDrawerMenu={onClickDrawerMenu}>
+                <FilterMenu categories={categories}
+                            onSelectCategory={(subCategoryId: string) => setSelectedCategory([subCategoryId])}
+                            visibleMenu={visibleMenu}
+                            onClickDrawerMenu={onClickDrawerMenu}>
                     <SearchFilter sizes={sizesList}
                                   colors={colorList}
                                   composition={compositionList}
@@ -197,7 +197,7 @@ export const ProductSearchPage: React.FunctionComponent<ProductSearchPageProps> 
                                   onChangeCategory={onChangeCategory}
                                   onChangePrice={onChangePrice}
                     />
-                </CategoriesMenu>
+                </FilterMenu>
                 <ProductList products={products?.results}
                              currentProductPage={currentProductPage}
                              productsPerPage={productsPerPage}
