@@ -32,35 +32,55 @@ export const StoreSelection: React.FunctionComponent<RouteComponentProps> = () =
 
     const selectStoreView = () => navigate(`${location.pathname}/${selectedStore}/${PathEnum.PRODUCTS}`);
 
+    const Welcome: React.FunctionComponent = () =>
+        <div className="welcome-heading"><h1>Welcome to The Baby Shop, please select a store</h1></div>
+
+    const SelectCountry: React.FunctionComponent = () => {
+        return (
+            <div className="select-store-item">
+                <Select placeholder="Select a country" value={selectedCountry}
+                        onChange={(option: string) => setSelectedCountry(option)}>
+                    {stores?.map((store: Store) => <Option key={shortid.generate()}
+                                                           value={store.name}>{store.name}</Option>)}
+                </Select>
+            </div>
+        );
+    };
+
+    const SelectStore: React.FunctionComponent = () => {
+        return (
+            <div className="select-store-item">
+                <Select
+                    placeholder="Select a store"
+                    disabled={isNil(selectedCountry)}
+                    value={selectedStore}
+                    onChange={(storeViewId: number) => setSelectedStore(storeViewId)}
+                >
+                    {selectedCountryStores?.map((storeView: StoreView) => <Option key={shortid.generate()}
+                                                                                  value={storeView.storeId}>{storeView.name}</Option>)}
+                </Select>
+            </div>
+        );
+    };
+
+    const AcceptButton: React.FunctionComponent = () => {
+        return (
+            <Button type="primary"
+                    disabled={isNil(selectedStore) || isNil(selectedCountry)}
+                    onClick={selectStoreView}>Accept</Button>
+        );
+    }
+
     return (
         <div className="store-selection-container">
             <div className="store-selection">
-                <div className="welcome-heading">
-                    <h1>Welcome to The Baby Shop, please select a store</h1>
-                </div>
+                <Welcome/>
                 <div className="select-store-container">
-                    <div className="select-store-item">
-                        <Select placeholder="Select a country" value={selectedCountry}
-                                onChange={(option: string) => setSelectedCountry(option)}>
-                            {stores?.map((store: Store) => <Option key={shortid.generate()}
-                                                                   value={store.name}>{store.name}</Option>)}
-                        </Select>
-                    </div>
-                    <div className="select-store-item">
-                        <Select
-                            placeholder="Select a store"
-                            disabled={isNil(selectedCountry)}
-                            value={selectedStore}
-                            onChange={(storeViewId: number) => setSelectedStore(storeViewId)}
-                        >
-                            {selectedCountryStores?.map((storeView: StoreView) => <Option key={shortid.generate()}
-                                                                                          value={storeView.storeId}>{storeView.name}</Option>)}
-                        </Select>
-                    </div>
+                    <SelectCountry/>
+                    <SelectStore/>
                 </div>
                 <div className="accept-button-container">
-                    <Button type="primary" disabled={isNil(selectedStore) || isNil(selectedCountry)}
-                            onClick={selectStoreView}>Accept</Button>
+                    <AcceptButton/>
                 </div>
             </div>
         </div>
