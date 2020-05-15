@@ -4,13 +4,22 @@
 	padding: 20px 0 20px 0;
 	background-color: @primary-color;
 
+	.link-container, .language-container {
+		display: flex;
+		width: 100%;
+		justify-content: flex-end;
+	}
+
+	.language-container {
+		flex-shrink: 2;
+	}
+
 	.title {
 		color: white;
 		font-weight: bolder;
 		font-family: Verdana, Arial, Helvetica, sans-serif;
 		font-size: 1.5rem;
 		text-decoration: underline overline white;
-		margin-left: 60px;
 	}
 
 	.language-select {

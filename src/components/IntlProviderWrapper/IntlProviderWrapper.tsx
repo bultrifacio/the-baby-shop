@@ -49,7 +49,6 @@ const IntlProviderWrapper: React.FunctionComponent = props => {
         switchLanguage,
     };
 
-
     return (
         <Context.Provider value={currentState}>
             <IntlProvider key={locale} locale={locale} messages={messages} defaultLocale={defaultLocale}>
