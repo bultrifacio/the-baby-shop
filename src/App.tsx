@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Redirect, Router} from "@reach/router";
 import {Products} from "./components/pages/Products/Products";
 import {NotFound} from "./components/pages/NotFound/NotFound";
@@ -7,11 +7,18 @@ import {Header} from "./components/Header/Header";
 import {StoreSelection} from "./components/pages/StoreSelection/StoreSelection";
 import {PathEnum} from "./shared/enum/PathEnum";
 import './App.less';
+import {Helmet} from "react-helmet";
+import {IntlContext} from "./components/IntlProviderWrapper/IntlProviderWrapper";
 
 const App: React.FunctionComponent = () => {
 
+    const {locale} = useContext(IntlContext);
+
     return (
         <main className="app">
+            <Helmet>
+                <html lang={locale} />
+            </Helmet>
             <Header/>
             <Router>
                 <StoreSelection path={PathEnum.STORE}/>

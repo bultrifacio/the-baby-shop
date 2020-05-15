@@ -8,6 +8,7 @@ import {BreadcrumbBar} from "../../BreadcrumbBar/BreadcrumbBar";
 import {useQuery} from "react-query";
 import {message} from "antd";
 import {PageEnum} from "../../../shared/enum/PageEnum";
+import {useIntl} from "react-intl";
 
 interface ProductDetailProps extends RouteComponentProps {
     storeViewId?: string;
@@ -18,6 +19,8 @@ export const ProductDetail: React.FunctionComponent<ProductDetailProps> = props 
 
     const [storeViewId, setStoreViewId] = React.useState<string>('');
     const [productId, setProductId] = React.useState<string>('');
+
+    const intl = useIntl();
 
     React.useEffect(() => {
         if (props.storeViewId) setStoreViewId(props.storeViewId);
@@ -33,8 +36,8 @@ export const ProductDetail: React.FunctionComponent<ProductDetailProps> = props 
     });
 
     React.useEffect(() => {
-        if (failureCount === 1) message.error("Can't get the product. Please, try it again in a few minutes.");
-    }, [failureCount]);
+        if (failureCount === 1) message.error(intl.formatMessage({id: 'product.details.request.error'}));
+    }, [failureCount, intl]);
 
 
     return (

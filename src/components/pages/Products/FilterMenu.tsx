@@ -3,6 +3,7 @@ import {Category} from "../../../shared/model/Category";
 import {Drawer, Menu} from "antd";
 import SubMenu from "antd/es/menu/SubMenu";
 import difference from 'lodash/difference';
+import {useIntl} from "react-intl";
 
 interface CategoriesListProps {
     categories: Array<Category> | undefined;
@@ -20,6 +21,8 @@ export const FilterMenu: React.FunctionComponent<CategoriesListProps> = props =>
     const onOpenChange = (openKeys: Array<string>): void => {
         setOpenedSubMenu(difference(openKeys, openedSubMenu));
     };
+
+    const intl = useIntl();
 
     const CategoriesMenu: React.FunctionComponent = () => {
         return (
@@ -50,7 +53,7 @@ export const FilterMenu: React.FunctionComponent<CategoriesListProps> = props =>
     const MobileMenu: React.FunctionComponent = () => {
         return (
             <Drawer
-                title="Categories"
+                title={intl.formatMessage({id: 'filter.menu.title'})}
                 placement="left"
                 closable
                 onClose={() => onClickDrawerMenu(false)}

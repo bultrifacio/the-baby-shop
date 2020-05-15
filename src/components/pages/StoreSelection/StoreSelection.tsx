@@ -8,6 +8,7 @@ import find from 'lodash/find';
 import {PathEnum} from "../../../shared/enum/PathEnum";
 import {getStores} from "./store.service";
 import {useQuery} from "react-query";
+import {useIntl} from 'react-intl';
 import './StoreSelection.less';
 
 export const StoreSelection: React.FunctionComponent<RouteComponentProps> = () => {
@@ -16,12 +17,13 @@ export const StoreSelection: React.FunctionComponent<RouteComponentProps> = () =
     const [selectedCountryStores, setSelectedCountryStores] = React.useState<Array<StoreView>>();
     const [selectedStore, setSelectedStore] = React.useState<number>();
     const location = useLocation();
+    const intl = useIntl();
 
     const {data: stores, failureCount} = useQuery('stores', getStores);
 
     React.useEffect(() => {
-        if (failureCount === 1) message.error("Can't get the stores. Please, try it again in a few minutes.");
-    }, [failureCount])
+        if (failureCount === 1) message.error(intl.formatMessage({id: 'store.selection.request.error'}));
+    }, [failureCount, intl])
 
     React.useEffect(() => {
         const country = find(stores, {name: selectedCountry});
@@ -33,12 +35,13 @@ export const StoreSelection: React.FunctionComponent<RouteComponentProps> = () =
     const selectStoreView = () => navigate(`${location.pathname}/${selectedStore}/${PathEnum.PRODUCTS}`);
 
     const Welcome: React.FunctionComponent = () =>
-        <div className="welcome-heading"><h1>Welcome to The Baby Shop, please select a store</h1></div>
+        <div className="welcome-heading"><h1>{intl.formatMessage({id: 'store.selection.welcome.message'})}</h1></div>
 
     const SelectCountry: React.FunctionComponent = () => {
         return (
             <div className="select-store-item">
-                <Select placeholder="Select a country" value={selectedCountry}
+                <Select placeholder={intl.formatMessage({id: 'store.selection.select.country.placeholder'})}
+                        value={selectedCountry}
                         onChange={(option: string) => setSelectedCountry(option)}>
                     {stores?.map((store: Store) => <Option key={shortid.generate()}
                                                            value={store.name}>{store.name}</Option>)}
@@ -50,11 +53,10 @@ export const StoreSelection: React.FunctionComponent<RouteComponentProps> = () =
     const SelectStore: React.FunctionComponent = () => {
         return (
             <div className="select-store-item">
-                <Select
-                    placeholder="Select a store"
-                    disabled={isNil(selectedCountry)}
-                    value={selectedStore}
-                    onChange={(storeViewId: number) => setSelectedStore(storeViewId)}
+                <Select placeholder={intl.formatMessage({id: 'store.selection.select.store.placeholder'})}
+                        disabled={isNil(selectedCountry)}
+                        value={selectedStore}
+                        onChange={(storeViewId: number) => setSelectedStore(storeViewId)}
                 >
                     {selectedCountryStores?.map((storeView: StoreView) => <Option key={shortid.generate()}
                                                                                   value={storeView.storeId}>{storeView.name}</Option>)}
@@ -67,7 +69,7 @@ export const StoreSelection: React.FunctionComponent<RouteComponentProps> = () =
         return (
             <Button type="primary"
                     disabled={isNil(selectedStore) || isNil(selectedCountry)}
-                    onClick={selectStoreView}>Accept</Button>
+                    onClick={selectStoreView}>{intl.formatMessage({id: 'store.selection.accept.button'})}</Button>
         );
     }
 

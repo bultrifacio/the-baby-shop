@@ -16,14 +16,12 @@ export const ProductList: React.FunctionComponent<ProductListProps> = props => {
 
     const {products, currentProductPage, productsPerPage, onChangePagination} = props;
 
-
     return (
         <div className="product-list-container">
             <List grid={{gutter: 20, column: 2, xs: 1}}
                   dataSource={products}
                   pagination={{
                       size: "small",
-                      showTotal: (total: number, range: [number, number]) => `${range[0]}-${range[1]} of ${total} items`,
                       defaultCurrent: 1,
                       showSizeChanger: true,
                       current: currentProductPage,
