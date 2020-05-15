@@ -2,6 +2,7 @@ import React from "react";
 import {Breadcrumb, Button} from "antd";
 import {useLocation} from "@reach/router";
 import {PageEnum} from "../../shared/enum/PageEnum";
+import {PathEnum} from "../../shared/enum/PathEnum";
 
 interface BreadcrumbBarProps {
     page: PageEnum;
@@ -27,7 +28,7 @@ export const BreadcrumbBar: React.FunctionComponent<BreadcrumbBarProps> = props 
             </Breadcrumb.Item>
             {page === PageEnum.PRODUCTS ?
                 <Breadcrumb.Item>
-                    <Button href='/stores'>Stores</Button>
+                    <Button href={PathEnum.STORE}>Stores</Button>
                 </Breadcrumb.Item>
                 : null}
             {page === PageEnum.PRODUCT_DETAIL ?

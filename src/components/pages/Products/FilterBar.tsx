@@ -36,7 +36,7 @@ export const FilterBar: React.FunctionComponent<SortSearchBarProps> = props => {
             <div className="filter-bar-item">
                 <Select value={selectedDirection}
                         onChange={(value: DirectionEnum) => onChangeDirection(value)}
-                        placeholder="Sort order">
+                        placeholder="Order by">
                     <Option value={DirectionEnum.ASC}>{capitalize(DirectionEnum.ASC)}</Option>
                     <Option value={DirectionEnum.DESC}>{capitalize(DirectionEnum.DESC)}</Option>
                 </Select>
@@ -49,7 +49,7 @@ export const FilterBar: React.FunctionComponent<SortSearchBarProps> = props => {
             <div className="filter-bar-item">
                 <Select value={selectedOrder}
                         onChange={(value: OrderEnum) => onChangeOrder(value)}
-                        placeholder="Select order">
+                        placeholder="Sort by">
                     <Option value={OrderEnum.NAME}>{capitalize(OrderEnum.NAME)}</Option>
                     <Option value={OrderEnum.PRICE}>{capitalize(OrderEnum.PRICE)}</Option>
                     <Option value={OrderEnum.BESTSELLERS}>{capitalize(OrderEnum.BESTSELLERS)}</Option>

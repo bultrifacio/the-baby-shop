@@ -4,11 +4,12 @@ import {Products} from "./components/pages/Products/Products";
 import {NotFound} from "./components/pages/NotFound/NotFound";
 import {ProductDetail} from "./components/pages/ProductDetail/ProductDetail";
 import {Header} from "./components/Header/Header";
-import './App.less';
 import {StoreSelection} from "./components/pages/StoreSelection/StoreSelection";
 import {PathEnum} from "./shared/enum/PathEnum";
+import './App.less';
 
 const App: React.FunctionComponent = () => {
+
     return (
         <main className="app">
             <Header/>

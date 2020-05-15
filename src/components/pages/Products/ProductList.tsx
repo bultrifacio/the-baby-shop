@@ -19,7 +19,7 @@ export const ProductList: React.FunctionComponent<ProductListProps> = props => {
 
     return (
         <div className="product-list-container">
-            <List grid={{gutter: 20, column: 2, xs: 1, sm: 2, md: 2, lg: 2, xl: 2}}
+            <List grid={{gutter: 20, column: 2, xs: 1}}
                   dataSource={products}
                   pagination={{
                       size: "small",
