@@ -3,7 +3,7 @@ import {RouteComponentProps} from "@reach/router";
 import {getProduct} from "./product.service";
 import './ProductDetail.less';
 import {ProductImages} from "./ProductImages";
-import {Detail} from "./Detail/Detail";
+import {Detail} from "./Detail";
 import {BreadcrumbBar} from "../../BreadcrumbBar/BreadcrumbBar";
 import {useQuery} from "react-query";
 import {message} from "antd";

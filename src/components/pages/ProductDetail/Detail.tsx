@@ -1,9 +1,9 @@
 import React from "react";
-import {Product} from "../../../../shared/model/Product";
-import {SizesList} from "./SizesList";
+import {Product} from "../../../shared/model/Product";
+import {SizeList} from "./SizeList";
 import {Divider} from "antd";
 import Img from "react-image";
-import {Price} from "../../../FinalPrice/Price";
+import {Price} from "../../FinalPrice/Price";
 import isNil from 'lodash/isNil';
 
 interface DetailProps {
@@ -36,7 +36,7 @@ export const Detail: React.FunctionComponent<DetailProps> = props => {
             <Description/>
             <Color/>
             <Composition/>
-            <SizesList sizes={sizes}/>
+            <SizeList sizes={sizes}/>
             <Img className="care-image" src={care}/>
         </div>
     );

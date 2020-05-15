@@ -25,7 +25,7 @@ interface SearchFilterProps {
     onClickClearFilters: () => void;
 }
 
-export const SearchFilter: React.FunctionComponent<SearchFilterProps> = props => {
+export const Filter: React.FunctionComponent<SearchFilterProps> = props => {
 
     const {categories, colors, composition, sizes} = props;
     const {selectedSize, selectedColor, selectedComposition, selectedPrice, selectedCategory} = props;
@@ -105,7 +105,7 @@ export const SearchFilter: React.FunctionComponent<SearchFilterProps> = props =>
         <Button onClick={onClickClearFilters} icon={<CloseOutlined/>}>Clear filters</Button>
 
     return (
-        <div className="search-filter">
+        <div className="filter">
             <div>
                 <Divider/>
             </div>

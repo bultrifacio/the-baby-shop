@@ -1,5 +1,5 @@
 import React from "react";
-import {ProductVariant} from "../../../../shared/model/Product";
+import {ProductVariant} from "../../../shared/model/Product";
 
 interface SizesItemProps {
     size: ProductVariant;

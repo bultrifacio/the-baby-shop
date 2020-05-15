@@ -1,5 +1,5 @@
 import React from "react";
-import {ProductVariant} from "../../../../shared/model/Product";
+import {ProductVariant} from "../../../shared/model/Product";
 import {SizeItem} from "./SizeItem";
 import shortid from "shortid";
 import isNil from 'lodash/isNil';
@@ -8,7 +8,7 @@ interface SizesListProps {
     sizes?: Array<ProductVariant>;
 }
 
-export const SizesList: React.FunctionComponent<SizesListProps> = props => {
+export const SizeList: React.FunctionComponent<SizesListProps> = props => {
 
     const {sizes} = props;
 

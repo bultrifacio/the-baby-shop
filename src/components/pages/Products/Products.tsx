@@ -5,7 +5,7 @@ import {Category} from "../../../shared/model/Category";
 import {FilterMenu} from "./FilterMenu";
 import {Product, ProductVariant} from "../../../shared/model/Product";
 import {ProductList} from "./ProductList";
-import './ProductSearchPage.less';
+import './Products.less';
 import {BreadcrumbBar} from "../../BreadcrumbBar/BreadcrumbBar";
 import uniq from 'lodash/uniq';
 import uniqBy from 'lodash/uniqBy';
@@ -13,12 +13,12 @@ import flatten from 'lodash/flatten';
 import isNil from 'lodash/isNil';
 import {CascaderOptionType} from "antd/es/cascader";
 import {FilterPayload} from "../../../shared/model/FilterPayload";
-import {SearchFilter} from "./SearchFilter";
+import {Filter} from "./Filter";
 import {SliderValue} from "antd/es/slider";
 import {DirectionEnum} from "../../../shared/enum/DirectionEnum";
 import {OrderEnum} from "../../../shared/enum/OrderEnum";
-import {SortSearchBar} from "./SortSearchBar";
-import {useQuery} from "react-query";
+import {FilterBar} from "./FilterBar";
+import {usePaginatedQuery, useQuery} from "react-query";
 import {message} from "antd";
 import {PageEnum} from "../../../shared/enum/PageEnum";
 
@@ -26,7 +26,7 @@ interface ProductSearchPageProps extends RouteComponentProps {
     storeViewId?: string;
 }
 
-export const ProductSearchPage: React.FunctionComponent<ProductSearchPageProps> = props => {
+export const Products: React.FunctionComponent<ProductSearchPageProps> = props => {
 
         const [storeViewId, setStoreViewId] = React.useState<string>('');
 
@@ -64,7 +64,7 @@ export const ProductSearchPage: React.FunctionComponent<ProductSearchPageProps> 
             if (failureCountCategories === 1) message.error("Can't get categories. Please, try it again in a few minutes.");
         }, [failureCountCategories]);
 
-        const {data: products, failureCount: failureCountProducts} = useQuery({
+        const {resolvedData: products, failureCount: failureCountProducts} = usePaginatedQuery({
             queryKey: ['products', storeViewId, filterPayload],
             queryFn: () => getProducts(storeViewId, filterPayload)
         });
@@ -169,33 +169,33 @@ export const ProductSearchPage: React.FunctionComponent<ProductSearchPageProps> 
         return (
             <div className="product-search-page">
                 <BreadcrumbBar page={PageEnum.PRODUCTS}/>
-                <SortSearchBar selectedDirection={selectedDirection}
-                               onChangeDirection={onChangeDirection}
-                               selectedOrder={selectedOrder}
-                               onChangeOrder={onChangeOrder}
-                               withText={withText}
-                               onChangeWithText={onChangeWithText}
-                               onClickDrawerMenu={onClickDrawerMenu}/>
+                <FilterBar selectedDirection={selectedDirection}
+                           onChangeDirection={onChangeDirection}
+                           selectedOrder={selectedOrder}
+                           onChangeOrder={onChangeOrder}
+                           withText={withText}
+                           onChangeWithText={onChangeWithText}
+                           onClickDrawerMenu={onClickDrawerMenu}/>
 
                 <FilterMenu categories={categories}
                             onSelectCategory={(subCategoryId: string) => setSelectedCategory([subCategoryId])}
                             visibleMenu={visibleMenu}
                             onClickDrawerMenu={onClickDrawerMenu}>
-                    <SearchFilter sizes={sizesList}
-                                  colors={colorList}
-                                  composition={compositionList}
-                                  categories={formattedCategories}
-                                  onClickClearFilters={onClickClearFilters}
-                                  selectedSize={selectedSize}
-                                  selectedColor={selectedColor}
-                                  selectedComposition={selectedComposition}
-                                  selectedPrice={selectedPrice}
-                                  selectedCategory={selectedCategory}
-                                  onChangeComposition={onChangeComposition}
-                                  onChangeColor={onChangeColor}
-                                  onChangeSize={onChangeSize}
-                                  onChangeCategory={onChangeCategory}
-                                  onChangePrice={onChangePrice}
+                    <Filter sizes={sizesList}
+                            colors={colorList}
+                            composition={compositionList}
+                            categories={formattedCategories}
+                            onClickClearFilters={onClickClearFilters}
+                            selectedSize={selectedSize}
+                            selectedColor={selectedColor}
+                            selectedComposition={selectedComposition}
+                            selectedPrice={selectedPrice}
+                            selectedCategory={selectedCategory}
+                            onChangeComposition={onChangeComposition}
+                            onChangeColor={onChangeColor}
+                            onChangeSize={onChangeSize}
+                            onChangeCategory={onChangeCategory}
+                            onChangePrice={onChangePrice}
                     />
                 </FilterMenu>
                 <ProductList products={products?.results}
