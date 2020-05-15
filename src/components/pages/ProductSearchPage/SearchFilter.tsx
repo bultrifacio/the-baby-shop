@@ -33,64 +33,99 @@ export const SearchFilter: React.FunctionComponent<SearchFilterProps> = props =>
 
     const {Option} = Select;
 
+    const Categories: React.FunctionComponent = () => {
+        return (
+            <Cascader options={categories}
+                      className="select-filter-item"
+                      placeholder="Select a category"
+                      value={selectedCategory}
+                      allowClear
+                      showSearch
+                      onChange={(value: Array<string>) => onChangeCategory(value)}/>
+        );
+    }
+
+    const PriceSlider: React.FunctionComponent = () => {
+        return (
+            <React.Fragment>
+                <div>Select a range of price</div>
+                <Slider step={CONSTANTS.SLIDE_STEP} range value={selectedPrice}
+                        onChange={(value: SliderValue) => onChangePrice(value)}/>
+            </React.Fragment>
+        );
+    }
+
+    const SelectComposition: React.FunctionComponent = () => {
+        return (
+            <Select
+                mode="multiple"
+                className="select-filter-item"
+                placeholder="Select composition"
+                value={selectedComposition}
+                onChange={(option: Array<string>) => onChangeComposition(option)}
+            >
+                {composition.map((composition: string) =>
+                    <Option key={shortid.generate()} value={composition}>{composition}</Option>
+                )}
+            </Select>
+        );
+    }
+
+    const SelectColor: React.FunctionComponent = () => {
+        return (
+            <Select
+                mode="multiple"
+                className="select-filter-item"
+                placeholder="Select colors"
+                value={selectedColor}
+                onChange={(option: Array<string>) => onChangeColor(option)}
+            >
+                {colors.map((color: string) => <Option key={shortid.generate()}
+                                                       value={color}>{color}</Option>)}
+            </Select>
+        );
+    }
+
+    const SelectSize: React.FunctionComponent = () => {
+        return (
+            <Select
+                mode="multiple"
+                className="select-filter-item"
+                placeholder="Select sizes"
+                value={selectedSize}
+                onChange={(value: Array<string>) => onChangeSize(value)}
+            >
+                {sizes.map((size: ProductVariant) => <Option key={shortid.generate()}
+                                                             value={size.variantId}>{size.name}</Option>)}
+            </Select>
+        );
+    }
+
+    const ClearButton: React.FunctionComponent = () =>
+        <Button onClick={onClickClearFilters} icon={<CloseOutlined/>}>Clear filters</Button>
+
     return (
         <div className="search-filter">
             <div>
                 <Divider/>
             </div>
             <div>
-                <Cascader options={categories}
-                          className="select-filter-item"
-                          placeholder="Select a category"
-                          value={selectedCategory}
-                          allowClear
-                          showSearch
-                          onChange={(value: Array<string>) => onChangeCategory(value)}/>
+                <Categories/>
             </div>
             <div>
-                <div>Select a range of price</div>
-                <Slider step={CONSTANTS.SLIDE_STEP} range value={selectedPrice}
-                        onChange={(value: SliderValue) => onChangePrice(value)}/>
+                <PriceSlider/>
             </div>
             <div>
-                <Select
-                    mode="multiple"
-                    className="select-filter-item"
-                    placeholder="Select composition"
-                    value={selectedComposition}
-                    onChange={(option: Array<string>) => onChangeComposition(option)}
-                >
-                    {composition.map((composition: string) =>
-                        <Option key={shortid.generate()} value={composition}>{composition}</Option>
-                    )}
-                </Select>
+                <SelectComposition/>
             </div>
             <div>
-                <Select
-                    mode="multiple"
-                    className="select-filter-item"
-                    placeholder="Select colors"
-                    value={selectedColor}
-                    onChange={(option: Array<string>) => onChangeColor(option)}
-                >
-                    {colors.map((color: string) => <Option key={shortid.generate()}
-                                                                 value={color}>{color}</Option>)}
-                </Select>
+                <SelectColor/>
             </div>
             <div>
-                <Select
-                    mode="multiple"
-                    className="select-filter-item"
-                    placeholder="Select sizes"
-                    value={selectedSize}
-                    onChange={(value: Array<string>) => onChangeSize(value)}
-                >
-                    {sizes.map((size: ProductVariant) => <Option key={shortid.generate()}
-                                                                       value={size.variantId}>{size.name}</Option>)}
-                </Select>
+                <SelectSize/>
             </div>
             <div className="filter-buttons-container">
-                <Button onClick={onClickClearFilters} icon={<CloseOutlined/>}>Clear filters</Button>
+                <ClearButton/>
             </div>
         </div>
     );
