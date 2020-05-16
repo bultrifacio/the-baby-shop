@@ -5,6 +5,9 @@ const enTranslations: Record<string, string> = {
     'store.selection.accept.button': 'Accept',
     'store.selection.request.error': "Can't get the stores. Please, try it again in a few minutes.",
 
+    'products.request.error.categories': "Can't get categories. Please, try it again in a few minutes.",
+    'products.request.error.products': "Can't get products. Please, try it again in a few minutes.",
+
     'filter.menu.title': 'Categories',
 
     'filter.bar.button.menu': 'Filters',

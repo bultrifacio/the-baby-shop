@@ -1,9 +1,14 @@
 const esTranslations: Record<string, string> = {
-    'store.selection.welcome.message': 'Bienvenida a The Baby Shop. Por favor, selecciona una tienda.',
+    'store.selection.welcome.message': 'Bienvenid@ a The Baby Shop. Por favor, selecciona una tienda.',
     'store.selection.select.country.placeholder': 'Selecciona un país',
     'store.selection.select.store.placeholder': 'Selecciona una tienda',
     'store.selection.accept.button': 'Aceptar',
     'store.selection.request.error': 'No se pueden obtener las tiendas. Por favor, inténtelo de nuevo en unos minutos.',
+
+    'products.request.error.categories':
+        'No se pueden obtener las categorías. Por favor, inténtelo de nuevo en unos minutos.',
+    'products.request.error.products':
+        'No se pueden obtener los productos. Por favor, inténtelo de nuevo en unos minutos.',
 
     'filter.menu.title': 'Categorías',
 
@@ -18,7 +23,7 @@ const esTranslations: Record<string, string> = {
     'filter.bar.select.order.bestseller': 'Bestsellers',
 
     'filter.select.category.placeholder': 'Seleccione una categoría',
-    'filter.select.price.message': 'Selecciona un rago de precio',
+    'filter.select.price.message': 'Selecciona un rango de precio',
     'filter.select.composition.placeholder': 'Selecciona una composición',
     'filter.select.color.placeholder': 'Selecciona colores',
     'filter.select.size.placeholder': 'Selecciona tallas',
