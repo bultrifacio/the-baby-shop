@@ -1,5 +1,5 @@
 const esTranslations: Record<string, string> = {
-    'store.selection.welcome.message': 'Bienvenida a The Baby Shop. Por favor, selecciona una tienda',
+    'store.selection.welcome.message': 'Bienvenida a The Baby Shop. Por favor, selecciona una tienda.',
     'store.selection.select.country.placeholder': 'Selecciona un país',
     'store.selection.select.store.placeholder': 'Selecciona una tienda',
     'store.selection.accept.button': 'Aceptar',
