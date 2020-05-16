@@ -40,7 +40,7 @@ export const ProductList: React.FunctionComponent<ProductListProps> = props => {
 
 const ProductCard: React.FunctionComponent<{ product: Product }> = props => {
     const {product} = props;
-    const {images, modelId, name, originalPrice, finalPrice} = product;
+    const {images, modelId, name, originalPrice, finalPrice, currency} = product;
     const {pathname} = useLocation();
 
     return (
@@ -51,7 +51,7 @@ const ProductCard: React.FunctionComponent<{ product: Product }> = props => {
             onClick={() => navigate(`${pathname}/${modelId}`)}
         >
             <div className="product-name">{name}</div>
-            <Price originalPrice={originalPrice} finalPrice={finalPrice}/>
+            <Price originalPrice={originalPrice} finalPrice={finalPrice} currency={currency}/>
         </Card>
     );
 };

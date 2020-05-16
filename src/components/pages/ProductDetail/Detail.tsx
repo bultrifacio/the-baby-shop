@@ -18,11 +18,11 @@ export const Detail: React.FunctionComponent<DetailProps> = props => {
 
     if (isNil(product)) return null;
 
-    const {name, originalPrice, finalPrice, description, color, composition, sizes, care} = product;
+    const {name, originalPrice, finalPrice, description, color, composition, sizes, care, currency} = product;
 
     const Name: React.FunctionComponent = () => <h1>{name}</h1>;
 
-    const FinalPrice: React.FunctionComponent = () => <Price originalPrice={originalPrice} finalPrice={finalPrice}/>;
+    const FinalPrice: React.FunctionComponent = () => <Price originalPrice={originalPrice} finalPrice={finalPrice} currency={currency}/>;
 
     const Description: React.FunctionComponent = () => <span>{description}</span>;
 
