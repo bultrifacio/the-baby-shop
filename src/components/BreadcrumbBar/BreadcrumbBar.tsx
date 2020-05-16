@@ -1,6 +1,6 @@
 import React from 'react';
-import { Breadcrumb, Button } from 'antd';
-import { useLocation } from '@reach/router';
+import { Breadcrumb } from 'antd';
+import { Link, useLocation } from '@reach/router';
 import { PageEnum } from '../../shared/enum/PageEnum';
 import { PathEnum } from '../../shared/enum/PathEnum';
 import { useIntl } from 'react-intl';
@@ -26,14 +26,18 @@ export const BreadcrumbBar: React.FunctionComponent<BreadcrumbBarProps> = (props
     return (
         <Breadcrumb className="breadcrumb-bar">
             <Breadcrumb.Item>{intl.formatMessage({ id: 'breadcrumb.bar.home' })}</Breadcrumb.Item>
-            {page === PageEnum.PRODUCTS ? (
+            {page === PageEnum.PRODUCTS || page === PageEnum.PRODUCT_DETAIL ? (
                 <Breadcrumb.Item>
-                    <Button href={PathEnum.STORE}>{intl.formatMessage({ id: 'breadcrumb.bar.store' })}</Button>
+                    <Link to={PathEnum.STORE}>
+                        <span>{intl.formatMessage({ id: 'breadcrumb.bar.store' })}</span>
+                    </Link>
                 </Breadcrumb.Item>
             ) : null}
             {page === PageEnum.PRODUCT_DETAIL ? (
                 <Breadcrumb.Item>
-                    <Button href={categoriesPath}>{intl.formatMessage({ id: 'breadcrumb.bar.products' })}</Button>
+                    <Link to={categoriesPath}>
+                        <span>{intl.formatMessage({ id: 'breadcrumb.bar.products' })}</span>
+                    </Link>
                 </Breadcrumb.Item>
             ) : null}
         </Breadcrumb>

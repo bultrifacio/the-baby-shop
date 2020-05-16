@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, Result } from 'antd';
-import { RouteComponentProps } from '@reach/router';
+import { Result } from 'antd';
+import { Link, RouteComponentProps } from '@reach/router';
 import { PathEnum } from '../../../shared/enum/PathEnum';
 import { useIntl } from 'react-intl';
 
@@ -13,9 +13,9 @@ export const NotFound: React.FunctionComponent<RouteComponentProps> = () => {
             title="404"
             subTitle={intl.formatMessage({ id: 'notFound.message' })}
             extra={
-                <Button type="primary" href={PathEnum.STORE}>
-                    {intl.formatMessage({ id: 'notFound.back.button' })}
-                </Button>
+                <Link to={PathEnum.STORE}>
+                    <span>{intl.formatMessage({ id: 'notFound.back.button' })}</span>
+                </Link>
             }
         />
     );
