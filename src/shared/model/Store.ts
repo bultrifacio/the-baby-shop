@@ -3,7 +3,7 @@ export interface Store {
     countryCode: string;
     storeCode: string;
     websiteCode: string;
-    storeViews: Array<StoreView>
+    storeViews: Array<StoreView>;
 }
 
 export interface StoreView {

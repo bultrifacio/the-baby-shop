@@ -3,7 +3,7 @@ const enTranslations: Record<string, string> = {
     'store.selection.select.country.placeholder': 'Select a country',
     'store.selection.select.store.placeholder': 'Select a store',
     'store.selection.accept.button': 'Accept',
-    'store.selection.request.error': 'Can\'t get the stores. Please, try it again in a few minutes.',
+    'store.selection.request.error': "Can't get the stores. Please, try it again in a few minutes.",
 
     'filter.menu.title': 'Categories',
 
@@ -24,7 +24,7 @@ const enTranslations: Record<string, string> = {
     'filter.select.size.placeholder': 'Select sizes',
     'filter.clear.button': 'Clear filters',
 
-    'product.details.request.error': 'Can\'t get the product. Please, try it again in a few minutes.',
+    'product.details.request.error': "Can't get the product. Please, try it again in a few minutes.",
 
     'detail.color.message': 'Color:',
     'detail.composition.message': 'Composition:',

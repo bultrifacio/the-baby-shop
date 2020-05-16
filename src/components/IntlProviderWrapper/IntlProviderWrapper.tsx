@@ -1,7 +1,7 @@
-import React from "react";
-import {IntlProvider} from 'react-intl';
-import esTranslations from "../../assets/translations/es";
-import enTranslations from "../../assets/translations/en";
+import React from 'react';
+import { IntlProvider } from 'react-intl';
+import esTranslations from '../../assets/translations/es';
+import enTranslations from '../../assets/translations/en';
 import * as locale2 from 'locale2';
 import get from 'lodash/get';
 import has from 'lodash/has';
@@ -12,7 +12,7 @@ interface ContextState {
     switchLanguage(languageKey: string): void;
 }
 
-const translations: { en: Record<string, string>; es: Record<string, string>; } = {
+const translations: { en: Record<string, string>; es: Record<string, string> } = {
     en: enTranslations,
     es: esTranslations,
 };
@@ -33,8 +33,7 @@ const Context = React.createContext<ContextState>({
     switchLanguage: () => {},
 });
 
-const IntlProviderWrapper: React.FunctionComponent = props => {
-
+const IntlProviderWrapper: React.FunctionComponent = (props) => {
     const [locale, setLocale] = React.useState<string>(defaultLocale);
     const [messages, setMessages] = React.useState<Record<string, string>>(get(translations, defaultLocale));
 
@@ -58,4 +57,4 @@ const IntlProviderWrapper: React.FunctionComponent = props => {
     );
 };
 
-export {IntlProviderWrapper, Context as IntlContext};
+export { IntlProviderWrapper, Context as IntlContext };

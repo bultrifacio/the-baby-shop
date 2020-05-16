@@ -1,7 +1,7 @@
-import React, {useContext} from "react";
+import React, { useContext } from 'react';
 import './Price.less';
 import isNil from 'lodash/isNil';
-import {IntlContext} from "../IntlProviderWrapper/IntlProviderWrapper";
+import { IntlContext } from '../IntlProviderWrapper/IntlProviderWrapper';
 
 interface FinalPriceProps {
     originalPrice: number | undefined;
@@ -11,11 +11,10 @@ interface FinalPriceProps {
     finalPriceClassName?: string;
 }
 
-export const Price: React.FunctionComponent<FinalPriceProps> = props => {
+export const Price: React.FunctionComponent<FinalPriceProps> = (props) => {
+    const { originalPrice, finalPrice, currency, originalPriceClassName, finalPriceClassName } = props;
 
-    const {originalPrice, finalPrice, currency, originalPriceClassName, finalPriceClassName} = props;
-
-    const {locale} = useContext(IntlContext);
+    const { locale } = useContext(IntlContext);
 
     if (isNil(originalPrice) || isNil(finalPrice)) return null;
 

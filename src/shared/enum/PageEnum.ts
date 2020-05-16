@@ -1,5 +1,5 @@
 export enum PageEnum {
     STORE = 'store',
     PRODUCTS = 'products',
-    PRODUCT_DETAIL = 'product'
+    PRODUCT_DETAIL = 'product',
 }

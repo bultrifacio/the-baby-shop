@@ -13,7 +13,7 @@ export interface Product {
     finalPriceType: string;
     currency: string;
     images: Array<string>; //image url
-    sizes: Array<ProductVariant>
+    sizes: Array<ProductVariant>;
 }
 
 export interface ProductVariant {

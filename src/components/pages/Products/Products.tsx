@@ -121,7 +121,7 @@ export const Products: React.FunctionComponent<ProductSearchPageProps> = props =
                 categoryId: selectedCategory[selectedCategory.length - 1],
                 filters: filtersList,
                 order: selectedOrder,
-                dir: selectedDirection
+                dir: selectedDirection,
             });
         }, [currentProductPage,
             productsPerPage,

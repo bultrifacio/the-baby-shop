@@ -1,9 +1,9 @@
-import React from "react";
-import {Category} from "../../../shared/model/Category";
-import {Drawer, Menu} from "antd";
-import SubMenu from "antd/es/menu/SubMenu";
+import React from 'react';
+import { Category } from '../../../shared/model/Category';
+import { Drawer, Menu } from 'antd';
+import SubMenu from 'antd/es/menu/SubMenu';
 import difference from 'lodash/difference';
-import {useIntl} from "react-intl";
+import { useIntl } from 'react-intl';
 
 interface CategoriesListProps {
     categories: Array<Category> | undefined;
@@ -12,11 +12,10 @@ interface CategoriesListProps {
     onClickDrawerMenu: Function;
 }
 
-export const FilterMenu: React.FunctionComponent<CategoriesListProps> = props => {
-
+export const FilterMenu: React.FunctionComponent<CategoriesListProps> = (props) => {
     const [openedSubMenu, setOpenedSubMenu] = React.useState<Array<string>>([]);
 
-    const {categories, onSelectCategory, visibleMenu, onClickDrawerMenu, children} = props;
+    const { categories, onSelectCategory, visibleMenu, onClickDrawerMenu, children } = props;
 
     const onOpenChange = (openKeys: Array<string>): void => {
         setOpenedSubMenu(difference(openKeys, openedSubMenu));
@@ -26,17 +25,20 @@ export const FilterMenu: React.FunctionComponent<CategoriesListProps> = props =>
 
     const CategoriesMenu: React.FunctionComponent = () => {
         return (
-            <Menu mode="inline"
-                  openKeys={openedSubMenu}
-                  onOpenChange={onOpenChange}
-                  className="inline-menu"
-                  onSelect={({key}) => onSelectCategory(key)}>
-                {categories?.map((category: Category) =>
+            <Menu
+                mode="inline"
+                openKeys={openedSubMenu}
+                onOpenChange={onOpenChange}
+                className="inline-menu"
+                onSelect={({ key }) => onSelectCategory(key)}
+            >
+                {categories?.map((category: Category) => (
                     <SubMenu key={category.categoryId} title={<span>{category.name}</span>}>
-                        {category.children.map((subCategory: Category) =>
-                            <Menu.Item key={subCategory.categoryId}>{subCategory.name}</Menu.Item>)}
+                        {category.children.map((subCategory: Category) => (
+                            <Menu.Item key={subCategory.categoryId}>{subCategory.name}</Menu.Item>
+                        ))}
                     </SubMenu>
-                )}
+                ))}
             </Menu>
         );
     };
@@ -44,7 +46,7 @@ export const FilterMenu: React.FunctionComponent<CategoriesListProps> = props =>
     const MenuAndFilter: React.FunctionComponent = () => {
         return (
             <React.Fragment>
-                <CategoriesMenu/>
+                <CategoriesMenu />
                 {children}
             </React.Fragment>
         );
@@ -53,13 +55,13 @@ export const FilterMenu: React.FunctionComponent<CategoriesListProps> = props =>
     const MobileMenu: React.FunctionComponent = () => {
         return (
             <Drawer
-                title={intl.formatMessage({id: 'filter.menu.title'})}
+                title={intl.formatMessage({ id: 'filter.menu.title' })}
                 placement="left"
                 closable
                 onClose={() => onClickDrawerMenu(false)}
                 visible={visibleMenu}
             >
-                <MenuAndFilter/>
+                <MenuAndFilter />
             </Drawer>
         );
     };
@@ -67,10 +69,10 @@ export const FilterMenu: React.FunctionComponent<CategoriesListProps> = props =>
     return (
         <div className="categories-menu">
             <div className="inline-menu-container">
-                <MenuAndFilter/>
+                <MenuAndFilter />
             </div>
             <div className="collapsable-menu-container">
-                <MobileMenu/>
+                <MobileMenu />
             </div>
         </div>
     );
